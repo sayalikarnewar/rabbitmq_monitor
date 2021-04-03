@@ -1,0 +1,22 @@
+version: "3.8"
+
+services: 
+  # AIOHTTP REST Server
+  rabbitmq_monitor:
+    image: rabbitmq_monitor
+    ports: 
+      - 8080:8080
+    volumes: 
+      - /home/sayali_karnewar/Documents/follo/rabbitmq_monitor:/data/db
+    working_dir: /data/db
+    depends_on: 
+      - database
+    network_mode: "host"
+    command: "python -u main.py"
+
+# MONGO Database
+  database:
+    image: mongo
+    ports: 
+      - 27017:27017
+    network_mode: "host"  
